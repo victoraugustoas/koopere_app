@@ -8,7 +8,7 @@ import {
 } from 'react-native-vision-camera';
 import {RootStackParamList} from '../global/navigation/types';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Camera'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'CameraView'>;
 
 export function CameraView({navigation}: Props) {
   const device = useCameraDevice('back');

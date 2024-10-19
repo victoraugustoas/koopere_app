@@ -4,7 +4,7 @@ import {NoPermissionViewProps} from '../../screens/NoPermissionView';
 export type RootStackParamList = {
   GrantPermissionView: GrantPermissionViewProps;
   Home: undefined;
-  Camera: undefined;
+  CameraView: undefined;
   NoPermissionView: NoPermissionViewProps;
 };
 

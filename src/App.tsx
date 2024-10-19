@@ -19,9 +19,9 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Home">
+      <RootStack.Navigator initialRouteName="CameraView">
         <RootStack.Screen name="Home" component={HomeView} />
-        <RootStack.Screen name="Camera" component={CameraView} />
+        <RootStack.Screen name="CameraView" component={CameraView} />
         <RootStack.Screen
           name="NoPermissionView"
           options={{headerShown: false}}
