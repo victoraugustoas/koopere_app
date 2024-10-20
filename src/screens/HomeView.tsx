@@ -1,9 +1,38 @@
-import {Text, View} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {StyleSheet, View} from 'react-native';
+import {Button} from '../components/Button';
+import {SizedBox} from '../components/SizedBox';
+import {Spacer} from '../components/Spacer';
+import {RootStackParamList} from '../global/navigation/types';
 
-export function HomeView() {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export function HomeView({navigation}: Props) {
   return (
-    <View>
-      <Text>oi</Text>
+    <View style={styles.container}>
+      <Spacer />
+      <Button
+        label="Ler QR Code"
+        onPressed={() => {
+          navigation.navigate('CameraView');
+        }}
+      />
+      <SizedBox height={20} />
+      <Button
+        label="Cadastrar QR Code"
+        onPressed={() => {
+          navigation.navigate('MetadataRegistrationView', {});
+        }}
+      />
+      <Spacer />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+});

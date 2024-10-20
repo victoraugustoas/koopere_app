@@ -21,7 +21,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="MetadataRegistrationView">
+      <RootStack.Navigator initialRouteName="Home">
         <RootStack.Screen name="Home" component={HomeView} />
         <RootStack.Screen name="CameraView" component={CameraView} />
         <RootStack.Screen

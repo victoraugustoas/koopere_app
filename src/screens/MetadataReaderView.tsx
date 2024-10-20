@@ -18,7 +18,7 @@ function InfoRow({title, value}: {title: string; value: string}) {
   );
 }
 
-export function MetadataReaderView({route}: Props) {
+export function MetadataReaderView({route, navigation}: Props) {
   const {metadata: metadaString} = route.params;
   const metadata = MetadataQrCodeDTO.fromString(metadaString);
 
@@ -40,6 +40,14 @@ export function MetadataReaderView({route}: Props) {
       <SizedBox height={40} />
       <View style={styles.button}>
         <Button label="Abrir QR Code" onPressed={getButtonAction} />
+        <Button
+          label="Salvar QR Code"
+          onPressed={() => {
+            navigation.navigate('MetadataRegistrationView', {
+              value: metadata.value,
+            });
+          }}
+        />
       </View>
       <Spacer />
     </View>
