@@ -12,6 +12,8 @@ import {RootStackParamList} from './global/navigation/types';
 import {CameraView} from './screens/CameraView';
 import {GrantPermissionView} from './screens/GrantPermission/GrantPermissionView';
 import {HomeView} from './screens/HomeView';
+import {MetadataReaderView} from './screens/MetadataReaderView';
+import {MetadataRegistrationView} from './screens/MetadataRegistrationView';
 import {NoPermissionView} from './screens/NoPermissionView';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -19,9 +21,17 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 function App(): React.JSX.Element {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="CameraView">
+      <RootStack.Navigator initialRouteName="MetadataRegistrationView">
         <RootStack.Screen name="Home" component={HomeView} />
         <RootStack.Screen name="CameraView" component={CameraView} />
+        <RootStack.Screen
+          name="MetadataReaderView"
+          component={MetadataReaderView}
+        />
+        <RootStack.Screen
+          name="MetadataRegistrationView"
+          component={MetadataRegistrationView}
+        />
         <RootStack.Screen
           name="NoPermissionView"
           options={{headerShown: false}}
