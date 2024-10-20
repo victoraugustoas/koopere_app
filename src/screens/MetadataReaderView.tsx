@@ -22,55 +22,24 @@ export function MetadataReaderView({route}: Props) {
   const {metadata: metadaString} = route.params;
   const metadata = MetadataQrCodeDTO.fromString(metadaString);
 
-  function getButtonLabel() {
-    switch (metadata.type) {
-      case 'email':
-        return 'Enviar email';
-      case 'text':
-        return 'Enviar email';
-      case 'url':
-        return 'Acessar website';
-      case 'phone':
-        return 'Discar número';
-    }
-  }
-
-  function getButtonAction(): () => Promise<void> {
-    switch (metadata.type) {
-      case 'email':
-        return async () => {
-          return Linking.openURL(`mailto:${metadata.value}`);
-        };
-      case 'text':
-        return async () => {
-          if (await Linking.canOpenURL(`${metadata.value}`)) {
-            return Linking.openURL(`${metadata.value}`);
-          }
-        };
-      case 'url':
-        return async () => {
-          return Linking.openURL(`${metadata.value}`);
-        };
-      case 'phone':
-        return async () => {
-          return Linking.openURL(`tel:${metadata.value}`);
-        };
+  async function getButtonAction() {
+    const canOpen = await Linking.canOpenURL(metadata.value);
+    if (canOpen) {
+      Linking.openURL(metadata.value);
     }
   }
 
   return (
     <View style={styles.container}>
       <Spacer />
-      <InfoRow title={'Autor:'} value={metadata.authorName} />
+      <InfoRow title={'Nome:'} value={metadata.name} />
       <SizedBox height={20} />
       <InfoRow title={'Criado em:'} value={metadata.createdAt.toString()} />
-      <SizedBox height={20} />
-      <InfoRow title={'Tipo:'} value={metadata.type} />
       <SizedBox height={20} />
       <InfoRow title={'Valor:'} value={metadata.value} />
       <SizedBox height={40} />
       <View style={styles.button}>
-        <Button label={getButtonLabel()} onPressed={getButtonAction()} />
+        <Button label="Abrir QR Code" onPressed={getButtonAction} />
       </View>
       <Spacer />
     </View>

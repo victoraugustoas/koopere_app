@@ -1,15 +1,14 @@
-export type QrCodeType = 'email' | 'text' | 'url' | 'phone'
+
 
 export class MetadataQrCodeDTO {
     constructor(
         public createdAt: Date,
-        public authorName: string,
-        public type: QrCodeType,
+        public name: string,
         public value: string,
     ) { }
 
     static fromString(value: string): MetadataQrCodeDTO {
-        const keys = ['createdAt', 'authorName', 'type', 'value'];
+        const keys = ['name', 'createdAt', 'value'];
         const json = JSON.parse(value);
         for (const key of keys) {
             if (!json[key]) {
@@ -18,9 +17,16 @@ export class MetadataQrCodeDTO {
         }
         return new MetadataQrCodeDTO(
             json.createdAt,
-            json.authorName,
-            json.type,
+            json.name,
             json.value,
         );
+    }
+
+    toString() {
+        return JSON.stringify({
+            createdAt: this.createdAt,
+            name: this.name,
+            value: this.value
+        })
     }
 }
