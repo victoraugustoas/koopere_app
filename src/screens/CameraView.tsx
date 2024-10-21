@@ -10,6 +10,7 @@ import {
   useCodeScanner,
 } from 'react-native-vision-camera';
 import {Button} from '../components/Button';
+import {SizedBox} from '../components/SizedBox';
 import {Spacer} from '../components/Spacer';
 import {RootStackParamList} from '../global/navigation/types';
 
@@ -68,6 +69,15 @@ export function CameraView({navigation}: Props) {
             label={code.value}
             onPressed={() => {
               Linking.openURL(code!.value!);
+            }}
+          />
+          <SizedBox height={8} />
+          <Button
+            label="Salvar QR Code"
+            onPressed={() => {
+              navigation.navigate('MetadataRegistrationView', {
+                value: code.value,
+              });
             }}
           />
           <Spacer />
