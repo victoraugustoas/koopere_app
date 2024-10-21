@@ -5,13 +5,30 @@ import {Button} from '../components/Button';
 import {Input} from '../components/Input';
 import {SizedBox} from '../components/SizedBox';
 import {Spacer} from '../components/Spacer';
-import {MetadataQrCodeDTO} from '../model/metadata_qrcode';
+import {InversifyDIProvider} from '../global/container/provider/inversify.provider';
+import {TYPES} from '../global/container/types';
+import {QrCodeDataProvider} from '../network/providers/qrcode.data_provider';
 
 export function MetadataRegistrationView() {
   const [name, setName] = useState('');
   const [value, setValue] = useState('');
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const showQr = Boolean(name != '' && value != '');
+  const showQr = Boolean(name !== '' && value !== '');
+
+  async function saveQrCode() {
+    try {
+      setLoading(true);
+      await InversifyDIProvider.get()
+        .find<QrCodeDataProvider>(TYPES.QrCodeDataProvider)
+        .createQrCode({name, value});
+    } catch (error) {
+      // TODO catch error
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -30,19 +47,16 @@ export function MetadataRegistrationView() {
       />
       <SizedBox height={20} />
       <View style={styles.qrCode}>
-        {showQr ? (
-          <QRCode
-            size={200}
-            value={new MetadataQrCodeDTO(new Date(), name, value).toString()}
-          />
-        ) : (
-          <></>
-        )}
+        {showQr ? <QRCode size={200} value={value} /> : <></>}
       </View>
       {showQr ? (
         <>
           <Spacer />
-          <Button label="Cadastrar QR Code" onPressed={() => {}} />
+          <Button
+            label="Cadastrar QR Code"
+            onPressed={() => saveQrCode()}
+            showLoading={loading}
+          />
           <Spacer />
         </>
       ) : (
