@@ -1,5 +1,5 @@
 import {HttpClient} from '../../global/http/http_client';
-import {QrCodeDTO} from '../../model/qrcode';
+import {QrCodeDTO} from '../../model/dtos/qrcode';
 import {PageableResponse} from '../../utils/pageable';
 import {QrCodeEndpoints} from '../endpoints/qrcode.endpoints';
 
