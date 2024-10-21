@@ -32,14 +32,24 @@ function App(): React.JSX.Element {
       ) : (
         <RootStack.Navigator initialRouteName="Home">
           <RootStack.Screen name="Home" component={HomeView} />
-          <RootStack.Screen name="CameraView" component={CameraView} />
+          <RootStack.Screen
+            name="CameraView"
+            component={CameraView}
+            options={{headerShown: false}}
+          />
           <RootStack.Screen
             name="MetadataReaderView"
+            options={{headerTitle: 'Dados do QR Code'}}
             component={MetadataReaderView}
           />
-          <RootStack.Screen name="ListQrCodes" component={ListQrCodes} />
+          <RootStack.Screen
+            name="ListQrCodes"
+            options={{headerTitle: 'Lista de QR Codes'}}
+            component={ListQrCodes}
+          />
           <RootStack.Screen
             name="MetadataRegistrationView"
+            options={{headerTitle: 'Criar um QR Code'}}
             component={MetadataRegistrationView}
           />
           <RootStack.Screen
