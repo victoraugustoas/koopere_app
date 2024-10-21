@@ -28,5 +28,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
   },
-  text: {color: 'white'},
+  text: {
+    color: 'white',
+    fontSize: 18,
+    fontFamily: 'Montserrat-Medium',
+    textAlign: 'center',
+  },
 });

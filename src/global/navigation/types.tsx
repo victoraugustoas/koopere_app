@@ -6,6 +6,8 @@ export type RootStackParamList = {
   Home: undefined;
   CameraView: undefined;
   NoPermissionView: NoPermissionViewProps;
+  MetadataReaderView: {metadata: string};
+  MetadataRegistrationView: {value?: string};
 };
 
 declare global {
