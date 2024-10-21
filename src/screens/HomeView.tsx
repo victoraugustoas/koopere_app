@@ -1,4 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from '../components/Button';
 import {SizedBox} from '../components/SizedBox';
@@ -15,6 +16,13 @@ export function HomeView({navigation}: Props) {
         label="Ler QR Code"
         onPressed={() => {
           navigation.navigate('CameraView');
+        }}
+      />
+      <SizedBox height={20} />
+      <Button
+        label="Listar QR Codes"
+        onPressed={() => {
+          navigation.navigate('ListQrCodes');
         }}
       />
       <SizedBox height={20} />

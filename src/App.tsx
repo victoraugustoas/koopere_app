@@ -15,6 +15,7 @@ import {useInitializer} from './hooks/useInitializer';
 import {CameraView} from './screens/CameraView';
 import {GrantPermissionView} from './screens/GrantPermission/GrantPermissionView';
 import {HomeView} from './screens/HomeView';
+import {ListQrCodes} from './screens/ListQrCodesView';
 import {MetadataReaderView} from './screens/MetadataReaderView';
 import {MetadataRegistrationView} from './screens/MetadataRegistrationView';
 import {NoPermissionView} from './screens/NoPermissionView';
@@ -36,6 +37,7 @@ function App(): React.JSX.Element {
             name="MetadataReaderView"
             component={MetadataReaderView}
           />
+          <RootStack.Screen name="ListQrCodes" component={ListQrCodes} />
           <RootStack.Screen
             name="MetadataRegistrationView"
             component={MetadataRegistrationView}

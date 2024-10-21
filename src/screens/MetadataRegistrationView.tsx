@@ -1,3 +1,4 @@
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import QRCode from 'react-native-qrcode-svg';
@@ -7,11 +8,17 @@ import {SizedBox} from '../components/SizedBox';
 import {Spacer} from '../components/Spacer';
 import {InversifyDIProvider} from '../global/container/provider/inversify.provider';
 import {TYPES} from '../global/container/types';
+import {RootStackParamList} from '../global/navigation/types';
 import {QrCodeDataProvider} from '../network/providers/qrcode.data_provider';
 
-export function MetadataRegistrationView() {
+type Props = NativeStackScreenProps<
+  RootStackParamList,
+  'MetadataRegistrationView'
+>;
+
+export function MetadataRegistrationView({route, navigation}: Props) {
   const [name, setName] = useState('');
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>(route.params.value ?? '');
   const [loading, setLoading] = useState<boolean>(false);
 
   const showQr = Boolean(name !== '' && value !== '');
@@ -22,9 +29,10 @@ export function MetadataRegistrationView() {
       await InversifyDIProvider.get()
         .find<QrCodeDataProvider>(TYPES.QrCodeDataProvider)
         .createQrCode({name, value});
+      navigation.popToTop();
     } catch (error) {
+      console.log(error);
       // TODO catch error
-      console.error(error);
     } finally {
       setLoading(false);
     }

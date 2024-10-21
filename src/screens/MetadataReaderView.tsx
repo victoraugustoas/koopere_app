@@ -1,11 +1,11 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {Linking, StyleSheet, Text, View} from 'react-native';
+import QRCode from 'react-native-qrcode-svg';
 import {Button} from '../components/Button';
 import {SizedBox} from '../components/SizedBox';
 import {Spacer} from '../components/Spacer';
 import {RootStackParamList} from '../global/navigation/types';
-import {MetadataQrCodeDTO} from '../model/metadata_qrcode';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'MetadataReaderView'>;
 
@@ -19,35 +19,28 @@ function InfoRow({title, value}: {title: string; value: string}) {
 }
 
 export function MetadataReaderView({route, navigation}: Props) {
-  const {metadata: metadaString} = route.params;
-  const metadata = MetadataQrCodeDTO.fromString(metadaString);
+  const qrCodeDTO = route.params;
 
   async function getButtonAction() {
-    const canOpen = await Linking.canOpenURL(metadata.value);
+    const canOpen = await Linking.canOpenURL(qrCodeDTO.value);
     if (canOpen) {
-      Linking.openURL(metadata.value);
+      Linking.openURL(qrCodeDTO.value);
     }
   }
 
   return (
     <View style={styles.container}>
       <Spacer />
-      <InfoRow title={'Nome:'} value={metadata.name} />
+      <QRCode size={200} value={qrCodeDTO.value} />
       <SizedBox height={20} />
-      <InfoRow title={'Criado em:'} value={metadata.createdAt.toString()} />
+      <InfoRow title={'Nome:'} value={qrCodeDTO.name} />
       <SizedBox height={20} />
-      <InfoRow title={'Valor:'} value={metadata.value} />
+      <InfoRow title={'Criado em:'} value={qrCodeDTO.createdAt.toString()} />
+      <SizedBox height={20} />
+      <InfoRow title={'Valor:'} value={qrCodeDTO.value} />
       <SizedBox height={40} />
       <View style={styles.button}>
         <Button label="Abrir QR Code" onPressed={getButtonAction} />
-        <Button
-          label="Salvar QR Code"
-          onPressed={() => {
-            navigation.navigate('MetadataRegistrationView', {
-              value: metadata.value,
-            });
-          }}
-        />
       </View>
       <Spacer />
     </View>

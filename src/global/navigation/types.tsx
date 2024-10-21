@@ -1,3 +1,4 @@
+import {QrCodeDTO} from '../../model/qrcode';
 import {GrantPermissionViewProps} from '../../screens/GrantPermission/GrantPermissionView';
 import {NoPermissionViewProps} from '../../screens/NoPermissionView';
 
@@ -6,8 +7,9 @@ export type RootStackParamList = {
   Home: undefined;
   CameraView: undefined;
   NoPermissionView: NoPermissionViewProps;
-  MetadataReaderView: {metadata: string};
+  MetadataReaderView: QrCodeDTO;
   MetadataRegistrationView: {value?: string};
+  ListQrCodes: undefined;
 };
 
 declare global {

@@ -9,7 +9,7 @@ export class AxiosHttpClient implements HttpClient {
 
   async post<T>(url: string, body: {[key: string]: any}): Promise<T> {
     try {
-      const response = await this.axios.post<T>(url, body);
+      const response = await this.axios.post<T>(url, JSON.stringify(body));
       return response.data;
     } catch (error) {
       throw this.buildError(error);

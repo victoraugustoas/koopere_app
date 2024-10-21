@@ -22,16 +22,19 @@ export class NetworkModule {
   }
 
   _onRequest(value: InternalAxiosRequestConfig) {
-    console.log(value);
+    // TODO add here logs
     return value;
   }
 
-  _onResponse(value: AxiosResponse) {
-    console.log(value);
-    return value;
+  _onResponse(response: AxiosResponse) {
+    if (response.data) {
+      response.data = JSON.parse(response.data);
+    }
+    return response;
   }
 
   _onError(config: AxiosError) {
+    // TODO add here logs
     console.error(config.toJSON());
     return config;
   }
