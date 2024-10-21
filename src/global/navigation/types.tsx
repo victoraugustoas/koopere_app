@@ -1,4 +1,4 @@
-import {QrCodeDTO} from '../../model/qrcode';
+import {QrCodeDTO} from '../../model/dtos/qrcode';
 import {GrantPermissionViewProps} from '../../screens/GrantPermission/GrantPermissionView';
 import {NoPermissionViewProps} from '../../screens/NoPermissionView';
 

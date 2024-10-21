@@ -6,7 +6,7 @@ import {SizedBox} from '../components/SizedBox';
 import {InversifyDIProvider} from '../global/container/provider/inversify.provider';
 import {TYPES} from '../global/container/types';
 import {RootStackParamList} from '../global/navigation/types';
-import {QrCodeDTO} from '../model/qrcode';
+import {QrCodeDTO} from '../model/dtos/qrcode';
 import {QrCodeDataProvider} from '../network/providers/qrcode.data_provider';
 import {PageableResponse} from '../utils/pageable';
 

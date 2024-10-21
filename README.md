@@ -1,79 +1,86 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# App Koopere
 
-# Getting Started
+## Descrição
+Este é um projeto React Native que visa aplicar os conhecimentos para a vaga de desenvolvedor React Native pleno.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+### Features
+ - Listagem de QR Codes
+ - Detalhes de um QR Code
+ - Leitura de QR Code
+ - Cadastrar QR Code
 
-## Step 1: Start the Metro Server
+## Instalação
+Siga os passos abaixo para configurar localmente.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Pré-requisitos
+A versão do NodeJS utilizada neste projeto foi a v18.13.0.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Iniciando projeto
 
+1. Instalação das dependências
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
+yarn install
+```
+2. Iniciar servidor metro
+```bash
 yarn start
 ```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
+3. Instale o app no dispositivo android
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
 yarn android
 ```
-
-### For iOS
-
+4. Pronto, agora o aplicativo será instalado em modo desenvolvedor
+5. Para instalar o app em modo release, salve os dados abaixo em `~/.gradle/gradle.properties`
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+KOOPERE_UPLOAD_STORE_FILE=upload-key.keystore
+KOOPERE_UPLOAD_KEY_ALIAS=upload-keytore
+KOOPERE_UPLOAD_STORE_PASSWORD=teste123
+KOOPERE_UPLOAD_KEY_PASSWORD=teste123
+```
+6. Desinstale outras versões para instalar o app em modo release
+```bash
+adb uninstall com.koopere_app
+```
+7. Então execute a instalação em um dispositivo
+```bash
+yarn install-android
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## Estrutura do Projeto
+```bash
+.
+├── assets                                          # Assets da aplicação
+├── src
+│   ├── global                                      # Configurações globais da aplicação
+│   │   ├── http                                    # Configuração do cliente HTTP
+│   │   ├── container                               # Configuração de inversão de dependências
+│   │   ├── initializer.ts                          # Arquivo para inicialização de configurações globais
+│   │   └── navigation
+│   ├── App.tsx                                     # Arquivo principal de inicialização do app
+│   ├── model
+│   │   ├── dtos
+│   │   └── enums
+│   ├── network                                     # Configurações de API
+│   │   ├── endpoints                               # Lista de endpoints
+│   │   └── providers                               # Conjuto de classes para fazer requisições
+│   ├── screens                                     # Telas do aplicativo
+│   │   └── HomeView.tsx                          
+│   ├── utils
+│   │   ├── assets.ts                               # Mapeamento de assets
+│   │   └── exceptions                              # Classes de exceção
+│   └── components                                  # Componentes da aplicação
+```
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Considerações
 
-## Step 3: Modifying your App
+### Melhorias
+- Adicionar i18n no projeto
+- Adicionar envio de logs no projeto
+- Criar classes de exceção específicas para cada cenário
+- Tratar casos de exceção tais como listagens vazias, servidor offline e outros.
+- Adicionar testes para telas
 
-Now that you have successfully run the app, let's modify it.
+### Gerenciador de estado
+Neste projeto, estamos utilizando o Inversify como container de injeção de dependências.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+O container de injeção de dependências, em conjunto com os testes, nos ajuda a criar mocks de requisições nos testes de forma mais fácil.
