@@ -84,3 +84,17 @@ yarn install-android
 Neste projeto, estamos utilizando o Inversify como container de injeção de dependências.
 
 O container de injeção de dependências, em conjunto com os testes, nos ajuda a criar mocks de requisições nos testes de forma mais fácil.
+
+
+## Capturas de tela
+<!-- <img src="/readme_imgs/5.png" style="width: 20%; display: inline-block;" />
+<img src="/readme_imgs/6.png" style="width: 20%; display: inline-block;" />
+<img src="/readme_imgs/3.png" style="width: 20%; display: inline-block;" />
+<img src="/readme_imgs/4.png" style="width: 20%; display: inline-block;" />
+<img src="/readme_imgs/1.png" style="width: 20%; display: inline-block;" />
+<img src="/readme_imgs/2.png" style="width: 20%; display: inline-block;" /> -->
+
+| Imagem | Imagem | Imagem |
+| :-----------------------------------: | :-----------------------------------: | :-----------------------------------: |
+| <img src="/readme_imgs/5.png" style="width: 20%; display: inline-block;" /> | <img src="/readme_imgs/6.png" style="width: 20%; display: inline-block;" /> | <img src="/readme_imgs/3.png" style="width: 20%; display: inline-block;" /> |
+| <img src="/readme_imgs/4.png" style="width: 20%; display: inline-block;" /> | <img src="/readme_imgs/1.png" style="width: 20%; display: inline-block;" /> | <img src="/readme_imgs/2.png" style="width: 20%; display: inline-block;" /> |
