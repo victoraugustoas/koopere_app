@@ -1,6 +1,7 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useCameraPermission} from 'react-native-vision-camera';
 import {Button} from '../components/Button';
 import {SizedBox} from '../components/SizedBox';
 import {Spacer} from '../components/Spacer';
@@ -9,13 +10,20 @@ import {RootStackParamList} from '../global/navigation/types';
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 export function HomeView({navigation}: Props) {
+  const {hasPermission} = useCameraPermission();
   return (
     <View style={styles.container}>
       <Spacer />
       <Button
         label="Ler QR Code"
         onPressed={() => {
-          navigation.navigate('CameraView');
+          if (!hasPermission) {
+            navigation.navigate('GrantPermissionView', {
+              permissionType: 'camera',
+            });
+          } else {
+            navigation.navigate('CameraView');
+          }
         }}
       />
       <SizedBox height={20} />

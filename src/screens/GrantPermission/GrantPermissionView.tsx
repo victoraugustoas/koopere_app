@@ -22,7 +22,7 @@ export function GrantPermissionView({route, navigation}: Props) {
         return async () => {
           const isPermissionOk = await requestPermission();
           if (isPermissionOk) {
-            return navigation.goBack();
+            return navigation.replace('CameraView');
           } else {
             return navigation.replace('NoPermissionView', {
               permissionType: 'camera',

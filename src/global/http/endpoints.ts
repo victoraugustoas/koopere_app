@@ -6,5 +6,5 @@ export class Endpoints {
 
   static url = UrlBuilder.https(this.productionHost).make({pathJoin: ['api']});
 
-  static generalTimeout = 5000;
+  static generalTimeout = 10000;
 }

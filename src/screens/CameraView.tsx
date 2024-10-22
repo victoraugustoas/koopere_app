@@ -6,7 +6,6 @@ import {
   Code,
   useCameraDevice,
   useCameraFormat,
-  useCameraPermission,
   useCodeScanner,
 } from 'react-native-vision-camera';
 import {Button} from '../components/Button';
@@ -21,7 +20,6 @@ export function CameraView({navigation}: Props) {
   const format = useCameraFormat(device, [
     {videoResolution: {width: 1920, height: 1080}},
   ]);
-  const {hasPermission} = useCameraPermission();
   const [code, setCode] = useState<Code | undefined>(undefined);
   const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
 
@@ -44,20 +42,11 @@ export function CameraView({navigation}: Props) {
     },
   });
 
-  if (!hasPermission) {
-    navigation.navigate('GrantPermissionView', {permissionType: 'camera'});
-    return;
-  }
-  if (device == null) {
-    navigation.navigate('NoPermissionView', {permissionType: 'camera'});
-    return;
-  }
-
   return (
     <View style={styles.container}>
       <Camera
         style={[StyleSheet.absoluteFill, styles.camera]}
-        device={device}
+        device={device!}
         isActive
         codeScanner={codeScanner}
         format={format}

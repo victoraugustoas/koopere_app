@@ -22,6 +22,6 @@ export class Initializer {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    await delay(500);
+    await delay(1000);
   }
 }

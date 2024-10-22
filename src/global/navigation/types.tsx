@@ -10,6 +10,7 @@ export type RootStackParamList = {
   MetadataReaderView: QrCodeDTO;
   MetadataRegistrationView: {value?: string};
   ListQrCodes: undefined;
+  SplashScreenView: undefined;
 };
 
 declare global {
